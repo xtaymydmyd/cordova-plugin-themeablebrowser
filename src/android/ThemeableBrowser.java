@@ -1262,6 +1262,10 @@ public class ThemeableBrowser extends CordovaPlugin {
                 } catch (android.content.ActivityNotFoundException e) {
                     Log.e(LOG_TAG, "Error sending sms " + url + ":" + e.toString());
                 }
+            }else if(url.startsWith("weixin:") || url.startsWith("wx:")){
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                cordova.getActivity().startActivity(intent);
+                return true;
             }
             return false;
         }
